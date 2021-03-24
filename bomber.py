@@ -51,14 +51,16 @@ def clr():
 def bann_text():
     clr()
     logo = """
-   ████████ █████                 ██
-   ▒▒▒██▒▒▒ ██▒▒██                ██
-      ██    ██  ██        ██   ██ ██
-      ██    █████▒  ████  ███ ███ █████
-      ██    ██▒▒██ ██  ██ ██▒█▒██ ██▒▒██
-      ██    ██  ██ ██  ██ ██ ▒ ██ ██  ██
-      ██    █████▒ ▒████▒ ██   ██ █████▒
-      ▒▒    ▒▒▒▒▒   ▒▒▒▒  ▒▒   ▒▒ ▒▒▒▒▒
+     _____ __  __  _____       ____                  _               
+  / ____|  \/  |/ ____|     |  _ \                | |              
+ | (___ | \  / | (___ ______| |_) | ___  _ __ ___ | |__   ___ _ __ 
+  \___ \| |\/| |\___ \______|  _ < / _ \| '_ ` _ \| '_ \ / _ \ '__|
+  ____) | |  | |____) |     | |_) | (_) | | | | | | |_) |  __/ |   
+ |_____/|_|  |_|_____/      |____/ \___/|_| |_| |_|_.__/ \___|_|   
+                                                                   
+                                                                   
+
+
                                          """
     version = "Version: "+__VERSION__
     contributors = "Contributors: "+" ".join(__CONTRIBUTORS__)
@@ -278,12 +280,12 @@ def selectnode(mode="sms"):
         check_for_updates()
         notifyen()
 
-        max_limit = {"sms": 500, "call": 15, "mail": 200}
+        max_limit = {"sms": 1500, "call": 1500, "mail": 200}
         cc, target = "", ""
         if mode in ["sms", "call"]:
             cc, target = get_phone_info()
             if cc != "91":
-                max_limit.update({"sms": 100})
+                max_limit.update({"sms": 1000})
         elif mode == "mail":
             target = get_mail_info()
         else:
@@ -307,7 +309,7 @@ def selectnode(mode="sms"):
                     mesgdcrt.CommandMessage("Enter delay time (in seconds): "))
                     .strip())
                 # delay = 0
-                max_thread_limit = (count//10) if (count//10) > 0 else 1
+                max_thread_limit = (count//1000) if (count//1000) > 0 else 1
                 max_threads = int(input(
                     mesgdcrt.CommandMessage(
                         "Enter Number of Thread (Recommended: {max_limit}): "
@@ -342,7 +344,7 @@ except FileNotFoundError:
 
 
 __VERSION__ = get_version()
-__CONTRIBUTORS__ = ['SpeedX', 't0xic0der', 'scpketer', 'Stefan']
+__CONTRIBUTORS__ = ['Sam PAndey']
 
 ALL_COLORS = [Fore.GREEN, Fore.RED, Fore.YELLOW, Fore.BLUE,
               Fore.MAGENTA, Fore.CYAN, Fore.WHITE]
